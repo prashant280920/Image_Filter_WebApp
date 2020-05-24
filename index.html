@@ -36,26 +36,38 @@
 							<button class="btn btn-secondary btn-disabled" disabled>Brightness</button>
 							<button class="filter-btn brightness-add btn btn-info">+</button>
 						</div>
+						<div class="slidecontainer">
+						  <input type="range" min="-100" max="100" value="0" class="custom-range " id="brightness">
+						</div>
 					</div>
 					<div class="col-md-3 margin">
 						<div class="btn-group btn-group-sm">
-							<button class="filter-btn Contrast-remove btn btn-info">-</button>
-							<button class="btn btn-secondary" disabled> &#160 Contrast &#160</button>
-							<button class="filter-btn Contrast-add btn btn-info">+</button>
+							<button class="filter-btn contrast-remove btn btn-info">-</button>
+							<button class="btn btn-secondary" disabled> Contrast </button>
+							<button class="filter-btn contrast-add btn btn-info">+</button>
+						</div>
+						<div class="slidecontainer">
+						  <input type="range" min="-100" max="100" value="0" class="custom-range" id="contrast">
 						</div>
 					</div>
 					<div class="col-md-3 margin">
 						<div class="btn-group btn-group-sm">
 							<button class="filter-btn saturation-remove btn btn-info">-</button>
-							<button class="btn btn-secondary" disabled>&#160Saturation</button>
+							<button class="btn btn-secondary" disabled>Saturation</button>
 							<button class="filter-btn saturation-add btn btn-info">+</button>
+						</div>
+						<div class="slidecontainer">
+						  <input type="range" min="-100" max="100" value="0" class="custom-range" id="saturation">
 						</div>
 					</div>
 					<div class="col-md-3 margin">
 						<div class="btn-group btn-group-sm">
 							<button class="filter-btn vibrance-remove btn btn-info">-</button>
-							<button class="btn btn-secondary" disabled>&#160 Vibrance &#160</button>
+							<button class="btn btn-secondary" disabled> Vibrance </button>
 							<button class="filter-btn vibrance-add btn btn-info">+</button>
+						</div>
+						<div class="slidecontainer">
+						  <input type="range" min="-100" max="100" value="0" class="custom-range" id="vibrance">
 						</div>
 					</div>
 				</div>
@@ -82,7 +94,7 @@
 					<!----EndRow---->
 				<div class="row mb-3 tmargin">
 					<div class="col-md-3">
-						<button class="filter-btn crossprocess-add btn btn-dark btn-block emargin">Cross Process</button>
+						<button class="filter-btn crossprocess-add btn btn-dark btn-block emargin">CrossProcess</button>
 					</div>
 					<div class="col-md-3">
 						<button class="filter-btn pinhole-add btn btn-dark btn-block emargin">Pinhole</button>
@@ -109,5 +121,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js" integrity="sha256-Ttj6Ke2Nzuxi5upPlHetkZxBtdTq0LV1Z6BEUUsKPfs=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
