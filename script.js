@@ -46,17 +46,17 @@ function add_effects(filterclass){
 	},false);
 };
 
-document.addEventListener("click",(event) => {
+var fil = document.querySelectorAll(".filter-btn")
 
-	if(event.target.classList.contains("filter-btn")){
-		add_effects(event.target.classList[1]);		
-	}
-	else if(event.target.id==="revert-btn"){
-		add_effects("none")
-	}
+fil.forEach(function(item){
+	item.addEventListener("click",(event) => {
+	add_effects(event.target.classList[1]);		
+	});
 
 });
-
+revertBtn.addEventListener("click",(e) => {
+	add_effects("none");		
+	});
 
 
 
