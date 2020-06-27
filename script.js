@@ -41,16 +41,35 @@ function add_effects(filterclass){
 			canvas.height = img.height;
 			ctx.filter = dictionary[filterclass];
 			ctx.drawImage(img,0,0,img.width,img.height);
+			add_filter_value();
 			
 		});
 	},false);
 };
 
+const finding_value = (value,index) =>{
+	var a='';
+	var i=index;
+	console.log(value,index)
+	while (1){
+		if (value[i]!==")"){
+			a+=value[i]
+			i+=1	
+			console.log(a)		
+		}else{
+			console.log(a);
+			break
+		}
+	}
+	return a;
+}
+
 var fil = document.querySelectorAll(".filter-btn")
 
 fil.forEach(function(item){
 	item.addEventListener("click",(event) => {
-	add_effects(event.target.classList[1]);		
+	add_effects(event.target.classList[1]);	
+		
 	});
 
 });
@@ -58,8 +77,79 @@ revertBtn.addEventListener("click",(e) => {
 	add_effects("none");		
 	});
 
+const filtersOption = {
+	bright:[document.getElementById("brightness"),"brightness",11],
+	contrast:[document.getElementById("contrast"),"contrast",9],
+	saturation:[document.getElementById("saturation"),"saturate",9],
+	vibrance:[document.getElementById("vibrance"),"vibrance",9]
+};
 
+const add_filter_value = () => {
+	for (x in filtersOption){
+		console.log(filtersOption[x])
+		var a = ctx.filter
+		var index = a.search(filtersOption[x][1])
+		if (index!==-1){
+			index = index+filtersOption[x][2]
+			var val = finding_value(a,index);
+			filtersOption[x][0].value=String(parseFloat(val)*100);	
+		}else{
+			filtersOption[x][0].value="100";
+		}
+		
+	}
+}
+const repeat_func = (a) => {
+	const file = uploadFile.files[0];
+		const reader = new FileReader();
+		if (file){
+			fileName = file.name;
+			reader.readAsDataURL(file);
+		}
+		//Add image to a canvas
+		reader.addEventListener("load",() =>{
+			img = new Image();
+			img.src = reader.result;
+			img.addEventListener("load" , () => {
+				canvas.width = img.width;
+				canvas.height = img.height;
+				ctx.filter = a;
+				console.log(ctx.filter)
+				ctx.drawImage(img,0,0,img.width,img.height);			
+			});
+		},false);
+}
 
+const on_filter_change = (item) => {
+	var a = ctx.filter;
+	var index = a.search(filtersOption[item][1]);
+	console.log(filtersOption[item],index,a)
+	if (a==="none"){
+		a="";
+	}
+	if (index!==-1){
+		var s = filtersOption[item][1]+"("+String(finding_value(a,index+filtersOption[item][2]))+")"; 
+		var val = filtersOption[item][0].value;
+		console.log(s,val)
+		val = val/100;
+		a = a.replace(s,filtersOption[item][1]+"("+String(val)+")");
+		console.log(a);
+		repeat_func(a);
+			
+	}else{
+		var val = filtersOption[item][0].value;
+		val = val/100;
+		a+=(" "+(filtersOption[item][1]+"("+String(val)+")"));
+		console.log(a)
+		repeat_func(a);
+
+	}console.log(ctx.filter)
+}
+Object.keys(filtersOption).forEach(function(item){
+	filtersOption[item][0].addEventListener("change",(event) => {
+	on_filter_change(item);		
+	});
+});
 /*-----------------------------Upload File--------------------------------*/
 uploadFile.addEventListener("change", (event) => {
 	const file = uploadFile.files[0];
@@ -76,9 +166,7 @@ uploadFile.addEventListener("change", (event) => {
 		img.addEventListener("load" , () => {
 			canvas.width = img.width;
 			canvas.height = img.height;
-
 			ctx.drawImage(img,0,0,img.width,img.height);
-			
 		});
 	},false);
 });
@@ -121,3 +209,4 @@ function download(canvas, filename) {
 	// Dispatch event
 	link.dispatchEvent(e);
 }
+
