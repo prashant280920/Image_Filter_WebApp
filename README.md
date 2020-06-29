@@ -1,7 +1,7 @@
 # Image_Filter_WebApp
 
-This web app provides different types of filter and effects and allow you to download your filtered image.<br />
-Effects are working but filters are still not completed.
+- This webpage provides different types of filter and effects and allow you to download your filtered image.<br />
+- Website is online on -- https://prashant280920.github.io/Image_Filter_WebApp/
 
 
 ## Available Scripts

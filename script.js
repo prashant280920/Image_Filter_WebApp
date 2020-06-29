@@ -46,14 +46,11 @@ function add_effects(filterclass){
 const finding_value = (value,index) =>{
 	var a='';
 	var i=index;
-	console.log(value,index)
 	while (1){
 		if (value[i]!==")"){
 			a+=value[i]
-			i+=1	
-			console.log(a)		
+			i+=1			
 		}else{
-			console.log(a);
 			break
 		}
 	}
@@ -80,7 +77,6 @@ const filtersOption = {
 
 const add_filter_value = () => {
 	for (x in filtersOption){
-		console.log(filtersOption[x])
 		var a = ctx.filter;
 		var index = a.search(filtersOption[x][1])
 		if (index!==-1){
